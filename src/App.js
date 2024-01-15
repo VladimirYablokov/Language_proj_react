@@ -3,8 +3,8 @@ import CardContainer from "./components/CardContainer";
 import {useEffect, useState} from "react";
 
 
-function App() {
-    const [cards, setCards] = useState([
+export default function App() {
+    const [cards, _setCards] = useState([
         {
             id: 1,
             ru: 'Кошка',
@@ -25,24 +25,28 @@ function App() {
             state: 'ru',
         },
     ])
+    const setCards = (func) => {
+        _setCards(pre => {
+            const newState = func(pre)
+            localStorage.setItem('cards', JSON.stringify(newState))
+            return newState
+        })
+    }
 
     useEffect(() => {
         const cards = JSON.parse(localStorage.getItem('cards')) ?? [];
-        setCards(cards)
+        setCards(() => cards)
     }, []);
 
     const changeCardState = (id) => {
         setCards(prev => {
-                const newState = prev.map(word => {
-                    if (word.id === id) {
-                        word.state = word.state === 'ru' ? 'en' : 'ru'
-                    }
-                    return word
-                })
-                localStorage.setItem('cards', JSON.stringify(newState))
-                return newState
-            }
-        )
+            return prev.map(word => {
+                if (word.id === id) {
+                    word.state = word.state === 'ru' ? 'en' : 'ru'
+                }
+                return word
+            })
+        })
     }
 
     return (
@@ -51,5 +55,3 @@ function App() {
         </div>
     );
 }
-
-export default App;
