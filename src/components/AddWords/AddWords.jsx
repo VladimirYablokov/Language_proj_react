@@ -21,6 +21,7 @@ function AddWords() {
         <form className={s.addForm} onSubmit={submit}>
             <Field label={"на русском"} name={'ru'}/>
             <Field label={"на английском"} name={'en'}/>
+            <Field/>
             <Button>Добавить</Button>
         </form>
     );
