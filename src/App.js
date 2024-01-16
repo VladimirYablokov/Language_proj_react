@@ -1,6 +1,7 @@
 import './App.css';
 import CardContainer from "./components/CardContainer";
 import {useEffect, useState} from "react";
+import Nav from "./components/Nav";
 
 
 export default function App() {
@@ -49,8 +50,16 @@ export default function App() {
         })
     }
 
+    const changeLanguage = (language) => {
+        setCards(prev => prev.map(card => {
+            card.state = language
+            return card
+        }))
+    }
+
     return (
         <div>
+            <Nav changeLanguage={changeLanguage}/>
             <CardContainer cards={cards} chanceCardState={changeCardState}/>
         </div>
     );
