@@ -2,7 +2,9 @@ import './App.css';
 import CardContainer from "./components/CardContainer";
 import {useEffect, useState} from "react";
 import Nav from "./components/Nav";
+import PostContainer from "./components/PostContainer";
 import {Context} from './context'
+import UserContainer from "./components/UserContainer";
 
 export default function App() {
     const [cards, _setCards] = useState([])
@@ -39,7 +41,7 @@ export default function App() {
     }
 
     const addCard = (card) => {
-        setCards(prev =>[ ...prev, card])
+        setCards(prev => [...prev, card])
     }
 
     const closeCard = (id) => {
@@ -49,9 +51,13 @@ export default function App() {
     }
 
     return (
-        <Context.Provider value={{changeLanguage, changeCardState, addCard, closeCard}}>
-            <Nav/>
-            <CardContainer cards={cards} />
-        </Context.Provider>
+        <>
+            <Context.Provider value={{changeLanguage, changeCardState, addCard, closeCard}}>
+                <Nav/>
+                <CardContainer cards={cards}/>
+            </Context.Provider>
+            <UserContainer/>
+            <PostContainer/>
+        </>
     );
 }
