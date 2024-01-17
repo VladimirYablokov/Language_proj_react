@@ -2,30 +2,11 @@ import './App.css';
 import CardContainer from "./components/CardContainer";
 import {useEffect, useState} from "react";
 import Nav from "./components/Nav";
-
+import {Context} from './context'
 
 export default function App() {
-    const [cards, _setCards] = useState([
-        {
-            id: 1,
-            ru: 'Кошка',
-            en: 'cat',
-            state: 'ru',
-        },
-        {
-            id: 2,
-            ru: 'Собака',
-            en: 'dog',
-            state: 'en',
+    const [cards, _setCards] = useState([])
 
-        },
-        {
-            id: 3,
-            ru: 'Велик',
-            en: 'bike',
-            state: 'ru',
-        },
-    ])
     const setCards = (func) => {
         _setCards(pre => {
             const newState = func(pre)
@@ -57,10 +38,20 @@ export default function App() {
         }))
     }
 
+    const addCard = (card) => {
+        setCards(prev =>[ ...prev, card])
+    }
+
+    const closeCard = (id) => {
+        setCards(prev => {
+            return prev.filter(card => card.id !== id)
+        })
+    }
+
     return (
-        <div>
-            <Nav changeLanguage={changeLanguage}/>
-            <CardContainer cards={cards} chanceCardState={changeCardState}/>
-        </div>
+        <Context.Provider value={{changeLanguage, changeCardState, addCard, closeCard}}>
+            <Nav/>
+            <CardContainer cards={cards} />
+        </Context.Provider>
     );
 }
