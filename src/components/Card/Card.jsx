@@ -14,7 +14,6 @@ export default function Card({id, ru, en, state}) {
         <div className={s.card}
              style={style}
              onClick={()=> changeCardState(id)}>
-
             <CloseButton handler={()=>closeCard(id)}/>
             {state === 'ru' ? ru : en}
         </div>
