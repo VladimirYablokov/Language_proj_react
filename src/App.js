@@ -5,6 +5,7 @@ import Nav from "./components/Nav";
 import PostContainer from "./components/PostContainer";
 import {Context} from './context'
 import UserContainer from "./components/UserContainer";
+import SingleUserContainer from "./components/SingleUserContainer";
 
 export default function App() {
     const [cards, _setCards] = useState([])
@@ -56,6 +57,8 @@ export default function App() {
                 <Nav/>
                 <CardContainer cards={cards}/>
             </Context.Provider>
+
+            <SingleUserContainer/>
             <UserContainer/>
             <PostContainer/>
         </>
