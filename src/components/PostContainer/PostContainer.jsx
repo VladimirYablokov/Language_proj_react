@@ -14,9 +14,13 @@ function PostContainer() {
     useEffect(getPosts, [])
 
     return (
-        <div className={s.postContainer}>
-            {posts.map(post => <Post data={post} key={post.id}/>)}
+        <div className={s.container}>
+            <h2>Посты пользователей:</h2>
+            <div className={s.postContainer}>
+                {posts.map(post => <Post data={post} key={post.id}/>)}
+            </div>
         </div>
+
     );
 }
 

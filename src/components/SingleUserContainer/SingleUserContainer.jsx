@@ -35,6 +35,8 @@ function SingleUserContainer() {
 
     return (
         <div className={s.outContainer}>
+            <h1>Работа с асинхронностью(fetch-запросы)</h1>
+            <h2>Пользователь:</h2>
             <div className={s.container}>
                 {user && <SingleUser {...user}/>}
             </div>

@@ -20,6 +20,7 @@ function UserContainer() {
 
     return (
         <div className={s.outContainer}>
+            <h2>Пользователи:</h2>
             <div className={s.container}>
                 {
                     (users.length === 0) ?
